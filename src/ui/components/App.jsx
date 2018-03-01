@@ -40,8 +40,18 @@ export default class App extends Component {
                         var feini = rehosp[touple["DOCUMENTO"]]["FECHAINGRESO"];
                         if(feini !== touple["FECHAINGRESO"]) {
                             console.log("DIFFRENT")
-                            var fefin = moment(touple["FECHA_EGRESO"]).format('DD-MMM-YYYY');
+                            var feinicio = moment(touple["FECHAINGRESO"],'DD-MM-YYYY hh:mm:ss a');
+                            var diff = rehosp[touple["DOCUMENTO"]].fefin.diff(feinico, "months");
+                            if(diff >= 30){
+                                touple["RE-HOSPITALIZACION"] = 1;
+                            }
+                            else{
+                                touple["RE-HOSPITALIZACION"] = 0;
+                            }
                             console.log(fefin);
+                        }
+                        else{
+                            touple["RE-HOSPITALIZACION"] = 0;
                         }
                     }
                     else {
@@ -57,7 +67,7 @@ export default class App extends Component {
                             fefin,
                         };
                         console.log(rehosp[touple["DOCUMENTO"]]);
-                        TOUPLE
+                        touple["RE-HOSPITALIZACION"] = 0;
                     }
                 }
             });
