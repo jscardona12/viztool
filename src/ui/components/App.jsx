@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import XLSX from 'xlsx';
 import moment from 'moment';
+import Graph from './Graph.jsx';
 
 export default class App extends Component {
 
@@ -41,7 +42,7 @@ export default class App extends Component {
                         if(feini !== touple["FECHAINGRESO"]) {
                             console.log("DIFFRENT")
                             var feinicio = moment(touple["FECHAINGRESO"],'DD-MM-YYYY hh:mm:ss a');
-                            var diff = rehosp[touple["DOCUMENTO"]].fefin.diff(feinico, "months");
+                            var diff = rehosp[touple["DOCUMENTO"]].fefin.diff(feinicio, "months");
                             if(diff >= 30){
                                 touple["RE-HOSPITALIZACION"] = 1;
                             }
@@ -84,6 +85,7 @@ export default class App extends Component {
                 }}/>
                 <button onClick={this.convertExcelToObject.bind(this)}>upload</button>
                 <div id="out"></div>
+                <Graph/>
             </div>
         )
     }
